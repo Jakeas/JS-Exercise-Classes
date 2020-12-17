@@ -79,19 +79,34 @@ class Airplane {
       this.model = model
       this.milesPerGallon = milesPerGallon
       this.tank = 0
-      this.odometer = 0
+      this.odometer = 0     
     }
+
     fill(gallons){
       this.tank += gallons
     }
+
     drive(distance){
-      if(distance ++){
-        this.odometer ++ && this.milesPerGallon --
+      const usedFuel = distance/ this.milesPerGallon /// distance 
+      const maxMiles = this.milesPerGallon * this.tank
+      this.odometer += distance
+      console.log(("T2 usedFuel"), usedFuel)
+      if(distance > maxMiles){
+        this.tank = 0
+        this.odometer = maxMiles
+        
+      }else if (distance <= maxMiles){
+        this.tank -= usedFuel
+        this.odometer = distance
+        // console.log("T2 max:", maxMiles)
+        // // console.log("T2 odo:", odometer)
+        // console.log("T2 dist:", distance)
       }
-      if (this.tank === 0){
-        `I ran out of fuel at ${this.odometer} miles!`
-      }
-    }
+      
+      if (distance > maxMiles){
+        return `I ran out of fuel at ${maxMiles} miles!`
+      }; 
+    } 
   }
   
   /*
